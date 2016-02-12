@@ -80,6 +80,34 @@ public class DatabaseRequest
 		return true;
 	}
 
+	public static boolean updateFinished(Context context, Integer id, Boolean finished)
+	{
+		DatabaseHelper dbHelper = new DatabaseHelper(context);
+		SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+		try
+		{
+			String cmd = String.format
+				(
+					"UPDATE tasks SET finished='%s' WHERE id=%d ",
+					(finished ? "true" : "false"), id
+				);
+			db.execSQL(cmd);
+			Log.i(TAG, cmd);
+		}
+		catch (SQLiteException e)
+		{
+			Log.e(TAG, "Error trying to update task entry");
+			return false;
+		}
+		finally
+		{
+			db.close();
+			dbHelper.close();
+		}
+		return true;
+	}
+
 	public static boolean delete(Context context, Integer id)
 	{
 		DatabaseHelper dbHelper = new DatabaseHelper(context);

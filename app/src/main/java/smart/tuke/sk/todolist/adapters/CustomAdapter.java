@@ -12,6 +12,7 @@ import android.widget.TextView;
 import smart.tuke.sk.todolist.R;
 import smart.tuke.sk.todolist.Task;
 import smart.tuke.sk.todolist.database.DatabaseObject;
+import smart.tuke.sk.todolist.database.DatabaseRequest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -91,20 +92,22 @@ public class CustomAdapter extends BaseAdapter
 				}
 			});
 
-		((CheckBox) rowView.findViewById(R.id.checkBoxFinished)).setOnCheckedChangeListener(
+		final CheckBox checkBoxFinished = ((CheckBox) rowView.findViewById(R.id.checkBoxFinished));
+		checkBoxFinished.setOnCheckedChangeListener(
 			new CheckBox.OnCheckedChangeListener()
 			{
 				@Override
 				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
 				{
-					System.out.println( buttonView.getContext().getClass().toString());
-					/*Intent intent = new Intent(CustomAdapter.this.context, buttonView.getContext().getClass());
+					/*
+					Old version: was trying to re-run activity, problems appeared with category
+					Intent intent = new Intent(CustomAdapter.this.context, buttonView.getContext().getClass());
 					//I guess this should be good to not duplicate activity
 					intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
 					intent
 					buttonView.getContext().startActivity(intent);*/
 
-					//todo re-load activity
+					DatabaseRequest.updateFinished(CustomAdapter.this.context, list.get(position).id, checkBoxFinished.isChecked());
 				}
 			}
 		);

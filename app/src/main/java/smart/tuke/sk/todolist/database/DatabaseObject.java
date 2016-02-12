@@ -32,6 +32,6 @@ public class DatabaseObject implements Comparable<DatabaseObject>
 	@Override
 	public int compareTo(DatabaseObject another)
 	{
-		return ((Integer) (this.finished ? 0 : 1)).compareTo(another.finished ? 0 : 1);
+		return ((Integer) (this.finished ? 1 : 0)).compareTo(another.finished ? 1 : 0);
 	}
 }
