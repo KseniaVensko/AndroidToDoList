@@ -149,8 +149,10 @@ public class Task extends AppCompatActivity
 				this.newTask = true;
 
 				//When creating a new item there should be no
-				(findViewById(R.id.delButton)).setVisibility(Button.INVISIBLE);
-				(findViewById(R.id.checkBoxFinished)).setVisibility(Button.INVISIBLE);
+				//(findViewById(R.id.delButton)).setVisibility(Button.INVISIBLE);
+				(findViewById(R.id.delButton)).setEnabled(false);
+				//(findViewById(R.id.checkBoxFinished)).setVisibility(Button.INVISIBLE);
+				(findViewById(R.id.checkBoxFinished)).setEnabled(false);
 			}
 			//This block gets executed if user opened an existing entry for updating
 			else
@@ -158,7 +160,8 @@ public class Task extends AppCompatActivity
 				this.newTask = false;
 
 				//When editing an existing task, there won't be a cancel button
-				(findViewById(R.id.buttonCancel)).setVisibility(Button.INVISIBLE);
+				//(findViewById(R.id.buttonCancel)).setVisibility(Button.INVISIBLE);
+				(findViewById(R.id.buttonCancel)).setEnabled(false);
 
 				//Loading fields
 				loadCategory(intent.getLongExtra("tag", 0));

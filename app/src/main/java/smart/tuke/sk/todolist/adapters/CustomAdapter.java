@@ -2,6 +2,7 @@ package smart.tuke.sk.todolist.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -87,7 +88,26 @@ public class CustomAdapter extends BaseAdapter
 					intent.putExtra("date", list.get(position).date);
 					intent.putExtra("hours", list.get(position).hours);
 					intent.putExtra("minutes", list.get(position).minutes);
-					intent.putExtra("finished", list.get(position).finished);
+
+					//We download the finished state from sql...
+					ArrayList<DatabaseObject> list =  DatabaseRequest.load(CustomAdapter.this.context);
+
+					//Default state
+					boolean finishedState = list.get(position).finished;
+
+					//Updated state
+					for(DatabaseObject object: list)
+					{
+						if(object.id == list.get(position).id)
+						{
+							Log.i("adapter","matched id "+String.valueOf(list.get(position).id)+" in db to download finished state:"+String.valueOf(object.finished));
+							finishedState = object.finished;
+							break;
+						}
+					}
+					Log.i("adapter","ended id lookup in db to download finished state");
+
+					intent.putExtra("finished", finishedState);
 					v.getContext().startActivity(intent);
 				}
 			});
