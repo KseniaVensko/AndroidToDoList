@@ -150,11 +150,15 @@ public class Task extends AppCompatActivity
 
 				//When creating a new item there should be no
 				(findViewById(R.id.delButton)).setVisibility(Button.INVISIBLE);
+				(findViewById(R.id.checkBoxFinished)).setVisibility(Button.INVISIBLE);
 			}
 			//This block gets executed if user opened an existing entry for updating
 			else
 			{
 				this.newTask = false;
+
+				//When editing an existing task, there won't be a cancel button
+				(findViewById(R.id.buttonCancel)).setVisibility(Button.INVISIBLE);
 
 				//Loading fields
 				loadCategory(intent.getLongExtra("tag", 0));
