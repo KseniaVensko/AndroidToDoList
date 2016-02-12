@@ -1,17 +1,18 @@
-package smart.tuke.sk.todolist.categories;
+package smart.tuke.sk.todolist.tasklists;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 import smart.tuke.sk.todolist.R;
-import smart.tuke.sk.todolist.adapters.CategoryAdapter;
+import smart.tuke.sk.todolist.Task;
 import smart.tuke.sk.todolist.adapters.CustomAdapter;
 import smart.tuke.sk.todolist.database.DatabaseObject;
-import smart.tuke.sk.todolist.Main_Activity;
 import smart.tuke.sk.todolist.database.DatabaseRequest;
 
 import java.util.ArrayList;
@@ -41,15 +42,27 @@ public class CategoryActivity extends AppCompatActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_menu);
 
-		Intent intent = getIntent();
-		if(!intent.hasExtra("categories"))
+		FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+		fab.setOnClickListener(new View.OnClickListener()
 		{
-			Toast.makeText(this,"Wrong intent for filtered tasks.",Toast.LENGTH_SHORT).show();
+			@Override
+			public void onClick(View view)
+			{
+				//Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+				Intent intent = new Intent(getApplicationContext(), Task.class);
+				intent.putExtra("new", true);
+				startActivity(intent);
+			}
+		});
+
+		Intent intent = getIntent();
+		if (!intent.hasExtra("categories"))
+		{
+			Toast.makeText(this, "Wrong intent for filtered tasks.", Toast.LENGTH_SHORT).show();
 			finish();
 		}
 
 		this.categories = intent.getLongArrayExtra("categories");
-		System.out.println(categories.toString());
 	}
 
 	@Override
@@ -80,9 +93,9 @@ public class CategoryActivity extends AppCompatActivity
 	//Checking if the object matches at least one category (tag)
 	private boolean matchesTag(DatabaseObject object)
 	{
-		for(long category: this.categories)
+		for (long category : this.categories)
 		{
-			if(object.tag == category)
+			if (object.tag == category)
 			{
 				return true;
 			}

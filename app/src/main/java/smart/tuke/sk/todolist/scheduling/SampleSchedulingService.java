@@ -8,7 +8,7 @@ import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import smart.tuke.sk.todolist.R;
-import smart.tuke.sk.todolist.Main_Activity;
+import smart.tuke.sk.todolist.tasklists.Main_Activity;
 
 import java.io.BufferedReader;
 import java.io.IOException;

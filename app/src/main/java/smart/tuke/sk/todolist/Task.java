@@ -54,8 +54,9 @@ public class Task extends AppCompatActivity
 		//Loads all important data into fields so that they can be inserted into a database
 		loadFields();
 
-		if(dataCorrectForSaving())
+		if (!dataCorrectForSaving())
 		{
+			Log.i(TAG,"Data have incorrect format, dataCorrectForSaving() returned false.");
 			return false;
 		}
 

@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-import smart.tuke.sk.todolist.Main_Activity;
 import smart.tuke.sk.todolist.R;
 import smart.tuke.sk.todolist.Task;
 import smart.tuke.sk.todolist.database.DatabaseObject;
@@ -17,7 +16,7 @@ import java.util.List;
 
 /**
  * Adapter for Tasks (DatabaseObjects)
- *
+ * <p/>
  * Created by Matúš on 11.2.2016.
  */
 public class CustomAdapter extends BaseAdapter

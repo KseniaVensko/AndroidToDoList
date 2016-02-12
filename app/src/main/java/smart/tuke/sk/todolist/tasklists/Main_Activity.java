@@ -1,4 +1,4 @@
-package smart.tuke.sk.todolist;
+package smart.tuke.sk.todolist.tasklists;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,8 +16,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
+import smart.tuke.sk.todolist.R;
+import smart.tuke.sk.todolist.SettingsActivity;
+import smart.tuke.sk.todolist.Task;
 import smart.tuke.sk.todolist.adapters.CustomAdapter;
-import smart.tuke.sk.todolist.categories.CategoryActivity;
 import smart.tuke.sk.todolist.categories.CategoryChooserActivity;
 import smart.tuke.sk.todolist.database.DatabaseObject;
 import smart.tuke.sk.todolist.database.DatabaseRequest;
@@ -70,7 +72,7 @@ public class Main_Activity extends AppCompatActivity
 		repopulateListView(this, lv);
 	}
 
-	//Subclasses can filter the list if they want to - this is a hook
+	//"Subclasses" can filter the list if they want to - this is a hook
 	protected ArrayList<DatabaseObject> filterList(
 		ArrayList<DatabaseObject> list)
 	{

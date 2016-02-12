@@ -1,27 +1,17 @@
 package smart.tuke.sk.todolist.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.TextView;
-import smart.tuke.sk.todolist.Main_Activity;
 import smart.tuke.sk.todolist.R;
-import smart.tuke.sk.todolist.Task;
 import smart.tuke.sk.todolist.categories.Category;
-import smart.tuke.sk.todolist.categories.CategoryActivity;
-import smart.tuke.sk.todolist.database.DatabaseObject;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Adapter for Categories in form of checkboxes.
- *
+ * <p/>
  * It doesn't need to change onCheckedChange events.
  * <p/>
  * Created by Steve on 12.2.2016.
@@ -63,8 +53,7 @@ public class CategoryAdapter extends BaseAdapter
 		((TextView) rowView.findViewById(R.id.checkBox)).setText(this.categories[position].getName());
 
 		//A new way of handling the situation using tags
-		rowView.setTag(this.categories[position]);
-
+		//rowView.setTag(this.categories[position]);
 		/*
 		//Expecting it to always be a checkbox, we make a checkedchange listener and keep track of current state
 		CheckBox box = (CheckBox)rowView;

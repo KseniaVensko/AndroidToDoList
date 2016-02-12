@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Main_Activity"
+            android:name=".tasklists.Main_Activity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
@@ -21,7 +21,7 @@
         </activity>
         <activity android:name=".Task" />
         <activity android:name=".SettingsActivity" />
-        <activity android:name=".categories.CategoryActivity"/>
+        <activity android:name=".tasklists.CategoryActivity"/>
         <activity android:name=".categories.CategoryChooserActivity"/>
     </application>
 

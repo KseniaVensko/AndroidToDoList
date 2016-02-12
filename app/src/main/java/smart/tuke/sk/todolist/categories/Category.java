@@ -9,7 +9,7 @@ package smart.tuke.sk.todolist.categories;
  */
 public class Category
 {
-	public  static final int NUMBER_OF_CATEGORIES = 2;
+	public static final int NUMBER_OF_CATEGORIES = 2;
 
 	private static Category[] categories = new Category[NUMBER_OF_CATEGORIES];
 

@@ -2,7 +2,7 @@ package smart.tuke.sk.todolist.database;
 
 /**
  * object from database = a task
- *
+ * <p/>
  * Created by Steve on 11.2.2016.
  */
 public class DatabaseObject

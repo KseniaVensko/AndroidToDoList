@@ -1,21 +1,20 @@
 package smart.tuke.sk.todolist.categories;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import smart.tuke.sk.todolist.adapters.CategoryAdapter;
-import smart.tuke.sk.todolist.adapters.CustomAdapter;
 import smart.tuke.sk.todolist.R;
+import smart.tuke.sk.todolist.adapters.CategoryAdapter;
+import smart.tuke.sk.todolist.tasklists.CategoryActivity;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
- *  A user may choose from several categories.
+ * A user may choose from several categories.
  */
 public class CategoryChooserActivity extends AppCompatActivity
 {
@@ -42,9 +41,9 @@ public class CategoryChooserActivity extends AppCompatActivity
 	//Reverse calculating, because i give up
 	protected long getCategoryTagFromName(String name)
 	{
-		for(Category c: Category.get())
+		for (Category c : Category.get())
 		{
-			if(c.getName().equals(name))
+			if (c.getName().equals(name))
 			{
 				return c.getTag();
 			}
@@ -58,19 +57,19 @@ public class CategoryChooserActivity extends AppCompatActivity
 		ArrayList<Long> list = new ArrayList<>();
 
 		//This code looks very dangerous without try block though
-		for(int i=0; i<this.listView.getChildCount(); i++)
+		for (int i = 0; i < this.listView.getChildCount(); i++)
 		{
-			LinearLayout layout = (LinearLayout)listView.getChildAt(i);
+			LinearLayout layout = (LinearLayout) listView.getChildAt(i);
 
 			//The child himself is inside a layout, inside a layout.
 			//I will assume, and hope, that he will be the first one there.
-			LinearLayout layout2 = (LinearLayout)layout.getChildAt(0);
+			LinearLayout layout2 = (LinearLayout) layout.getChildAt(0);
 			CheckBox child = (CheckBox) layout2.getChildAt(0);
 
-			if(child.isChecked())
+			if (child.isChecked())
 			{
 				long tag = getCategoryTagFromName(child.getText().toString());
-				if(tag>0)
+				if (tag > 0)
 				{
 					list.add(tag);
 				}
@@ -78,9 +77,9 @@ public class CategoryChooserActivity extends AppCompatActivity
 		}
 
 		long[] convertedlist = new long[list.size()];
-		for(int i = 0;i<list.size();i++)
+		for (int i = 0; i < list.size(); i++)
 		{
-			convertedlist[i]=list.get(i);
+			convertedlist[i] = list.get(i);
 		}
 
 		//Array of category tags will be passed to the category activity class
