@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/TaskNameEdit"
             android:layout_weight="1"
-            android:text="Task name" />
+            android:hint="@string/task_name" />
     </LinearLayout>
 
     <LinearLayout
@@ -57,12 +57,19 @@
         android:layout_height="match_parent"
         android:layout_weight="1">
 
-        <EditText
+        <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/CategoryEdit"
-            android:layout_weight="1"
-            android:text="Category" />
+            android:text="@string/Category1"
+            android:id="@+id/Cat1"
+            android:onClick="onCat1Clicked" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Category2"
+            android:id="@+id/Cat2"
+            android:onClick="onCat2Clicked" />
     </LinearLayout>
 
     <LinearLayout
@@ -76,7 +83,15 @@
             android:layout_height="wrap_content"
             android:id="@+id/DescriptionEdit"
             android:layout_weight="1"
-            android:text="Description" />
+            android:hint="@string/description" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/delete"
+            android:id="@+id/delButton"
+            android:layout_weight="1"
+            android:onClick="onDeleteClicked" />
     </LinearLayout>
 
     <LinearLayout
@@ -88,8 +103,9 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="save"
+            android:text="@string/save"
             android:id="@+id/saveButt"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            android:onClick="onSaveClicked" />
     </LinearLayout>
 </LinearLayout>
