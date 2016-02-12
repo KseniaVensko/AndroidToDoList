@@ -40,6 +40,7 @@ public class CustomAdapter extends BaseAdapter {
     {
        CheckBox cb;
     }
+    //
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         Holder holder=new Holder();
