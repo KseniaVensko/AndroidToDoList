@@ -106,4 +106,7 @@
     <string name="search">Search</string>
     <string name="finished">Finished</string>
     <string name="cancel">Cancel</string>
+    <string name="notification_test">Notification Test</string>
+    <string name="erase_database">Erase Database</string>
+    <string name="random_data">Random Data</string>
 </resources>

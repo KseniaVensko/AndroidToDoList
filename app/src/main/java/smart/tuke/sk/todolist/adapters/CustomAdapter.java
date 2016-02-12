@@ -2,7 +2,6 @@ package smart.tuke.sk.todolist.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -90,8 +89,9 @@ public class CustomAdapter extends BaseAdapter
 					intent.putExtra("minutes", list.get(position).minutes);
 
 					//We download the finished state from sql...
-					ArrayList<DatabaseObject> list =  DatabaseRequest.load(CustomAdapter.this.context);
+					ArrayList<DatabaseObject> list = DatabaseRequest.load(CustomAdapter.this.context);
 
+					/*
 					//Default state
 					boolean finishedState = list.get(position).finished;
 
@@ -108,6 +108,11 @@ public class CustomAdapter extends BaseAdapter
 					Log.i("adapter","ended id lookup in db to download finished state");
 
 					intent.putExtra("finished", finishedState);
+					*/
+
+					//Re-defined: edited task will always be unfinished by default
+					intent.putExtra("finished",false);
+
 					v.getContext().startActivity(intent);
 				}
 			});
@@ -127,7 +132,8 @@ public class CustomAdapter extends BaseAdapter
 					intent
 					buttonView.getContext().startActivity(intent);*/
 
-					DatabaseRequest.updateFinished(CustomAdapter.this.context, list.get(position).id, checkBoxFinished.isChecked());
+					DatabaseRequest.updateFinished(CustomAdapter.this.context, list.get(position).id,
+					                               checkBoxFinished.isChecked());
 				}
 			}
 		);

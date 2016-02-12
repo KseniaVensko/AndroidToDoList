@@ -45,21 +45,42 @@
             android:id="@+id/timePicker"
             android:timePickerMode="spinner" />
 
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/Category1"
-            android:id="@+id/Cat1"
-            android:onClick="onCat1Clicked"
-            android:layout_marginTop="10sp"/>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/Category2"
-            android:id="@+id/Cat2"
-            android:onClick="onCat2Clicked"
-            android:layout_marginTop="10sp"/>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Category1"
+                    android:id="@+id/Cat1"
+                    android:onClick="onCat1Clicked"
+                    android:layout_marginTop="10sp"/>
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Category2"
+                    android:id="@+id/Cat2"
+                    android:onClick="onCat2Clicked"
+                    android:layout_marginTop="10sp"/>
+
+            </LinearLayout>
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/finished"
+                android:id="@+id/checkBoxFinished"
+                android:layout_weight="0.02" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -75,13 +96,6 @@
             android:id="@+id/DescriptionEdit"
             android:hint="@string/description"
             android:layout_weight="0.12" />
-
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/finished"
-            android:id="@+id/checkBoxFinished"
-            android:layout_weight="0.02" />
 
     </LinearLayout>
 

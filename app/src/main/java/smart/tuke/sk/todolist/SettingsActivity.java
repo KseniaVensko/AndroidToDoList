@@ -1,5 +1,6 @@
 package smart.tuke.sk.todolist;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -47,5 +48,16 @@ public class SettingsActivity extends AppCompatActivity
 			DatabaseObject o = load.get(i);
 			DatabaseRequest.delete(this, o.id);
 		}
+	}
+
+	public void notificationTest(View view)
+	{
+		NotificationInfo.showNotification(this, "Notification", "This is how users will be notified");
+	}
+
+	public void soundTest(View view)
+	{
+		MediaPlayer player = MediaPlayer.create(this,R.raw.tim_tum);
+		player.start();
 	}
 }

@@ -1,4 +1,4 @@
-package smart.tuke.sk.todolist.scheduling;
+package smart.tuke.sk.todolist.scheduling_old;
 
 import android.app.IntentService;
 import android.app.NotificationManager;

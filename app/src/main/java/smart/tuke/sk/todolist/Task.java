@@ -1,13 +1,14 @@
 package smart.tuke.sk.todolist;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.*;
 import smart.tuke.sk.todolist.database.DatabaseRequest;
-import smart.tuke.sk.todolist.scheduling.Alarm;
+import smart.tuke.sk.todolist.scheduling_old.Alarm;
 
 import java.util.Date;
 
@@ -161,7 +162,7 @@ public class Task extends AppCompatActivity
 
 				//When editing an existing task, there won't be a cancel button
 				//(findViewById(R.id.buttonCancel)).setVisibility(Button.INVISIBLE);
-				(findViewById(R.id.buttonCancel)).setEnabled(false);
+				//(findViewById(R.id.buttonCancel)).setEnabled(false);
 
 				//Loading fields
 				loadCategory(intent.getLongExtra("tag", 0));
@@ -207,6 +208,10 @@ public class Task extends AppCompatActivity
 		{
 			Toast.makeText(this, "Task saved successfully", Toast.LENGTH_SHORT).show();
 
+			//Some sound
+			MediaPlayer player = MediaPlayer.create(this,R.raw.tim_tum);
+			player.start();
+
 			//End of current Task activity
 			finish();
 		}
@@ -216,7 +221,6 @@ public class Task extends AppCompatActivity
 		}
 	}
 
-	//TODO add a cancel button maybe?
 	public void onCancelClicked(View v)
 	{
 		finish();
