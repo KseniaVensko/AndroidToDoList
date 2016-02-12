@@ -8,11 +8,11 @@
         android:layout_width="match_parent"
         android:layout_height="97dp">
 
-        <TextView
+        <CheckBox
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="(item)"
-            android:id="@+id/textinlist"
-            android:textSize="40sp" />
+            android:text="New CheckBox"
+            android:id="@+id/checkBox"
+            android:textSize="25sp" />
     </LinearLayout>
 </LinearLayout>
