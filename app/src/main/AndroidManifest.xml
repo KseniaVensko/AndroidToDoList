@@ -21,6 +21,7 @@
         </activity>
         <activity android:name=".Task" />
         <activity android:name=".SettingsActivity" />
+        <activity android:name=".categories.CategoryActivity"/>
         <activity android:name=".categories.CategoryChooserActivity"/>
     </application>
 

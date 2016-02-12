@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import smart.tuke.sk.todolist.adapters.CategoryAdapter;
 import smart.tuke.sk.todolist.adapters.CustomAdapter;
@@ -46,12 +47,24 @@ public class CategoryChooserActivity extends AppCompatActivity
 		//This code looks very dangerous without try block though
 		for(int i=0; i<this.listView.getChildCount(); i++)
 		{
+			LinearLayout layout = (LinearLayout)listView.getChildAt(i);
+
+			//The child himself is inside a layout, inside a layout.
+			//I will assume, and hope, that he will be the first one there.
+			LinearLayout layout2 = (LinearLayout)layout.getChildAt(0);
+			CheckBox child = (CheckBox) layout2.getChildAt(0);
+			System.out.println(child.toString());
 			//Child has his category inside a "tag" (do not mistake this tag for a category's tag = ID number)
-			CheckBox child = (CheckBox) listView.getChildAt(i);
 			Category category = (Category) child.getTag();
 
+			if(category == null)
+			{
+				continue; //todo rework
+			}
 			if(child.isChecked())
 			{
+
+				System.out.println(category.getTag());
 				list.add(category.getTag());
 			}
 		}

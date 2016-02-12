@@ -27,8 +27,9 @@ public class CustomAdapter extends BaseAdapter
 
 	private static LayoutInflater inflater = null;
 
-	public CustomAdapter(Main_Activity tasklist, List<DatabaseObject> tasks)
+	public CustomAdapter(Context tasklist, List<DatabaseObject> tasks)
 	{
+		//upraveny typ Context, tento adapter je volany aj z CategoryActivity
 		context = tasklist;
 		list = tasks;
 		inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

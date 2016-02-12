@@ -21,6 +21,8 @@ import java.util.List;
 
 /**
  * Adapter for Categories in form of checkboxes.
+ *
+ * It doesn't need to change onCheckedChange events.
  * <p/>
  * Created by Steve on 12.2.2016.
  */

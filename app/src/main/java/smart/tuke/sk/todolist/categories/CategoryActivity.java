@@ -1,10 +1,18 @@
 package smart.tuke.sk.todolist.categories;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.widget.ListView;
 import android.widget.Toast;
+import smart.tuke.sk.todolist.R;
+import smart.tuke.sk.todolist.adapters.CategoryAdapter;
+import smart.tuke.sk.todolist.adapters.CustomAdapter;
 import smart.tuke.sk.todolist.database.DatabaseObject;
 import smart.tuke.sk.todolist.Main_Activity;
+import smart.tuke.sk.todolist.database.DatabaseRequest;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -14,7 +22,7 @@ import java.util.Iterator;
  * <p/>
  * Created by Steve on 11.2.2016.
  */
-public class CategoryActivity extends Main_Activity
+public class CategoryActivity extends AppCompatActivity
 {
 	private static final String TAG = "CategoryActivity";
 	//private Category[] categories;
@@ -31,23 +39,49 @@ public class CategoryActivity extends Main_Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_menu);
 
 		Intent intent = getIntent();
 		if(!intent.hasExtra("categories"))
 		{
-			Toast.makeText(this,"Wrong intent for filtered tasks.",Toast.LENGTH_SHORT);
+			Toast.makeText(this,"Wrong intent for filtered tasks.",Toast.LENGTH_SHORT).show();
 			finish();
 		}
 
 		this.categories = intent.getLongArrayExtra("categories");
-
 	}
+
+	@Override
+	protected void onStart()
+	{
+		super.onStart();
+
+		//(Re-)Downloading entire database to the listview
+		Log.i(TAG, "Re-downloaded entire database");
+		ListView lv = (ListView) findViewById(R.id.useThisList);
+		repopulateListView(this, lv);
+	}
+
+	//Loads the most current data into a listview
+	public void repopulateListView(Context context, ListView lv)
+	{
+		final ArrayList<DatabaseObject> list = DatabaseRequest.load(this);
+		if (list == null)
+		{
+			Toast.makeText(this, "There was a problem loading tasks", Toast.LENGTH_SHORT).show();
+			return;
+		}
+
+		CustomAdapter ca = new CustomAdapter(this, filterList(list));
+		lv.setAdapter(ca);
+	}
+
 	//Checking if the object matches at least one category (tag)
 	private boolean matchesTag(DatabaseObject object)
 	{
-		for(Category category: this.categories)
+		for(long category: this.categories)
 		{
-			if(object.tag == category.getTag())
+			if(object.tag == category)
 			{
 				return true;
 			}
@@ -56,7 +90,6 @@ public class CategoryActivity extends Main_Activity
 	}
 
 	//We only filter out the objects that match our category
-	@Override
 	protected ArrayList<DatabaseObject> filterList(ArrayList<DatabaseObject> list)
 	{
 		//We will iterate over the old list and populate our new categoryList
