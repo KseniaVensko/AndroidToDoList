@@ -60,6 +60,7 @@
             android:id="@+id/Cat2"
             android:onClick="onCat2Clicked"
             android:layout_marginTop="10sp"/>
+
     </LinearLayout>
 
     <LinearLayout
@@ -73,6 +74,13 @@
             android:layout_height="60dp"
             android:id="@+id/DescriptionEdit"
             android:hint="@string/description"
+            android:layout_weight="0.12" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/finished"
+            android:id="@+id/checkBoxFinished"
             android:layout_weight="0.12" />
 
     </LinearLayout>
