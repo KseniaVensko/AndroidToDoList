@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 import smart.tuke.sk.todolist.R;
 import smart.tuke.sk.todolist.adapters.CategoryAdapter;
 import smart.tuke.sk.todolist.tasklists.CategoryActivity;
@@ -76,15 +77,23 @@ public class CategoryChooserActivity extends AppCompatActivity
 			}
 		}
 
-		long[] convertedlist = new long[list.size()];
-		for (int i = 0; i < list.size(); i++)
+		if(list.size()==0)
 		{
-			convertedlist[i] = list.get(i);
+			//User has to select at least one category
+			Toast.makeText(this, "Select at least one category",Toast.LENGTH_SHORT).show();
 		}
+		else
+		{
+			long[] convertedlist = new long[list.size()];
+			for (int i = 0; i < list.size(); i++)
+			{
+				convertedlist[i] = list.get(i);
+			}
 
-		//Array of category tags will be passed to the category activity class
-		Intent intent = new Intent(this, CategoryActivity.class);
-		intent.putExtra("categories", convertedlist);
-		startActivity(intent);
+			//Array of category tags will be passed to the category activity class
+			Intent intent = new Intent(this, CategoryActivity.class);
+			intent.putExtra("categories", convertedlist);
+			startActivity(intent);
+		}
 	}
 }

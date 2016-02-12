@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 import smart.tuke.sk.todolist.R;
 import smart.tuke.sk.todolist.Task;
@@ -65,28 +66,48 @@ public class CustomAdapter extends BaseAdapter
 
 		//Filling the information inside each row
 		((TextView) rowView.findViewById(R.id.textinlist)).setText(list.get(position).name);
-		((CheckBox) rowView.findViewById(R.id.checkBoxFinished)).setChecked(true);//todo
+		((CheckBox) rowView.findViewById(R.id.checkBoxFinished)).setChecked(list.get(position).finished);
 
 		holder.cb = (TextView) rowView.findViewById(R.id.textinlist);
 
 		//Information for a future Task activity
-		rowView.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(View v)
+		rowView.setOnClickListener(
+			new View.OnClickListener()
 			{
-				//Toast.makeText(v.getContext(),"SLDLASK",Toast.LENGTH_SHORT).show()
-				Intent intent = new Intent(CustomAdapter.this.context, Task.class);
-				intent.putExtra("id", list.get(position).id);
-				intent.putExtra("tag", list.get(position).tag);
-				intent.putExtra("name", list.get(position).name);
-				intent.putExtra("desc", list.get(position).description);
-				intent.putExtra("date", list.get(position).date);
-				intent.putExtra("hours", list.get(position).hours);
-				intent.putExtra("minutes", list.get(position).minutes);
-				v.getContext().startActivity(intent);
+				@Override
+				public void onClick(View v)
+				{
+					//Toast.makeText(v.getContext(),"SLDLASK",Toast.LENGTH_SHORT).show()
+					Intent intent = new Intent(CustomAdapter.this.context, Task.class);
+					intent.putExtra("id", list.get(position).id);
+					intent.putExtra("tag", list.get(position).tag);
+					intent.putExtra("name", list.get(position).name);
+					intent.putExtra("desc", list.get(position).description);
+					intent.putExtra("date", list.get(position).date);
+					intent.putExtra("hours", list.get(position).hours);
+					intent.putExtra("minutes", list.get(position).minutes);
+					intent.putExtra("finished", list.get(position).finished);
+					v.getContext().startActivity(intent);
+				}
+			});
+
+		((CheckBox) rowView.findViewById(R.id.checkBoxFinished)).setOnCheckedChangeListener(
+			new CheckBox.OnCheckedChangeListener()
+			{
+				@Override
+				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
+				{
+					System.out.println( buttonView.getContext().getClass().toString());
+					/*Intent intent = new Intent(CustomAdapter.this.context, buttonView.getContext().getClass());
+					//I guess this should be good to not duplicate activity
+					intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+					intent
+					buttonView.getContext().startActivity(intent);*/
+
+					//todo re-load activity
+				}
 			}
-		});
+		);
 		return rowView;
 	}
 }

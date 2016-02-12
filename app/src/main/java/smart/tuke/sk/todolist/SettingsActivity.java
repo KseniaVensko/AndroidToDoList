@@ -27,11 +27,11 @@ public class SettingsActivity extends AppCompatActivity
 			DatabaseRequest.insert(this, m,
 			                       "first test",
 			                       "data",
-			                       m, n, n);
+			                       m, n, n, true);
 			DatabaseRequest.insert(this, n,
 			                       "second data",
 			                       "test",
-			                       m, n, m);
+			                       m, n, m, false);
 
 		ArrayList<DatabaseObject> list = DatabaseRequest.load(this);
 		Toast.makeText(this,"After adding 2 records,\ndatabase has "+list.size()+" rows.",Toast.LENGTH_SHORT).show();

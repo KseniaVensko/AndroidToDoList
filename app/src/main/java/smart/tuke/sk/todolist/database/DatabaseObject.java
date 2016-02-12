@@ -5,7 +5,7 @@ package smart.tuke.sk.todolist.database;
  * <p/>
  * Created by Steve on 11.2.2016.
  */
-public class DatabaseObject
+public class DatabaseObject implements Comparable<DatabaseObject>
 {
 	public Integer id;
 	public Long tag;
@@ -14,8 +14,10 @@ public class DatabaseObject
 	public Long date;
 	public Long hours;
 	public Long minutes;
+	public Boolean finished;
 
-	public DatabaseObject(Integer id, Long tag, String name, String description, Long date, Long hours, Long minutes)
+	public DatabaseObject(Integer id, Long tag, String name, String description, Long date, Long hours, Long minutes,
+	                      Boolean finished)
 	{
 		this.id = id;
 		this.tag = tag;
@@ -24,5 +26,12 @@ public class DatabaseObject
 		this.date = date;
 		this.hours = hours;
 		this.minutes = minutes;
+		this.finished = finished;
+	}
+
+	@Override
+	public int compareTo(DatabaseObject another)
+	{
+		return ((Integer) (this.finished ? 0 : 1)).compareTo(another.finished ? 0 : 1);
 	}
 }

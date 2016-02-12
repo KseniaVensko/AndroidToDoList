@@ -20,6 +20,7 @@ public class Task extends AppCompatActivity
 	private long hours;
 	private long minutes;
 	private String description;
+	private Boolean finished;
 
 	//Specifies if the task is supposed to be a new task
 	private Boolean newTask;
@@ -76,13 +77,13 @@ public class Task extends AppCompatActivity
 		{
 			return DatabaseRequest
 				.insert(this, category, this.task_name, this.description, dateToLong(this.date), this.hours,
-				        this.minutes);
+				        this.minutes, this.finished);
 		}
 		else
 		{
 			return DatabaseRequest.update
 				(this, this.id, category, this.task_name, this.description, dateToLong(this.date), this.hours,
-				 this.minutes);
+				 this.minutes, this.finished);
 		}
 	}
 
@@ -94,6 +95,7 @@ public class Task extends AppCompatActivity
 		DatePicker etDate = (DatePicker) findViewById(R.id.datePicker);
 		TimePicker etTime = (TimePicker) findViewById(R.id.timePicker);
 		EditText etDescription = (EditText) findViewById(R.id.DescriptionEdit);
+		CheckBox checkBoxFinished = (CheckBox) findViewById(R.id.checkBoxFinished);
 
 		//Saving them to fields
 		this.task_name = etTaskName.getText().toString();
@@ -101,6 +103,7 @@ public class Task extends AppCompatActivity
 		this.hours = etTime.getCurrentHour();
 		this.minutes = etTime.getCurrentMinute();
 		this.description = etDescription.getText().toString();
+		this.finished = checkBoxFinished.isChecked();
 	}
 
 	//Loads category (using tag)
@@ -134,9 +137,9 @@ public class Task extends AppCompatActivity
 		DatePicker etDate = (DatePicker) findViewById(R.id.datePicker);
 		TimePicker etTime = (TimePicker) findViewById(R.id.timePicker);
 		EditText etDescription = (EditText) findViewById(R.id.DescriptionEdit);
+		CheckBox checkBoxFinished = (CheckBox) findViewById(R.id.checkBoxFinished);
 
-		//Putting variables from intent to fields and layout
-
+		//Putting variables from intent into fields and layout
 		Intent intent = getIntent();
 		if (intent != null)
 		{
@@ -161,6 +164,7 @@ public class Task extends AppCompatActivity
 				this.date = dateFromLong(intent.getLongExtra("date", 0));
 				this.hours = intent.getLongExtra("hours", 0);
 				this.minutes = intent.getLongExtra("minutes", 0);
+				this.finished = intent.getBooleanExtra("finished", false);
 
 				//Loading layout from fields
 				etTaskName.setText(this.task_name);
@@ -169,6 +173,7 @@ public class Task extends AppCompatActivity
 				etTime.setCurrentMinute((int) this.minutes);
 				etDate.getCalendarView()
 				      .setDate(dateToLong(this.date)); //possible overload setDate() with animation maybe
+				checkBoxFinished.setChecked(this.finished);
 
 				//Something with alarm?
 				//Not sure if it has to be executed when new task gets created (outside this block),

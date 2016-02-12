@@ -1,5 +1,7 @@
 package smart.tuke.sk.todolist.categories;
 
+import android.content.res.Resources;
+
 /**
  * Each category has its name.
  * <p/>
@@ -11,11 +13,17 @@ public class Category
 {
 	public static final int NUMBER_OF_CATEGORIES = 2;
 
-	private static Category[] categories = new Category[NUMBER_OF_CATEGORIES];
+	private static Category[] categories;
+
+	private static Resources resources;
 
 	static
 	{
+		resources = Resources.getSystem();
+
 		//Our singleton categories
+		Category.categories = new Category[NUMBER_OF_CATEGORIES];
+		//resources.getString(R.string.Category1)
 		Category.categories[0] = new Category(1, "School TimeTable");
 		Category.categories[1] = new Category(2, "Work");
 	}

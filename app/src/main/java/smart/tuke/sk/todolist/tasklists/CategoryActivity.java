@@ -16,6 +16,7 @@ import smart.tuke.sk.todolist.database.DatabaseObject;
 import smart.tuke.sk.todolist.database.DatabaseRequest;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 
 /**
@@ -85,6 +86,8 @@ public class CategoryActivity extends AppCompatActivity
 			Toast.makeText(this, "There was a problem loading tasks", Toast.LENGTH_SHORT).show();
 			return;
 		}
+
+		Collections.sort(list);
 
 		CustomAdapter ca = new CustomAdapter(this, filterList(list));
 		lv.setAdapter(ca);
