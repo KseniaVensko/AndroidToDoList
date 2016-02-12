@@ -43,6 +43,11 @@ public class DatabaseRequest
 			Log.e(TAG, "Trying to insert existing task entry");
 			return false;
 		}
+		catch (SQLiteException e)
+		{
+			Log.e(TAG, "Insert error");
+			return false;
+		}
 		finally
 		{
 			db.close();
