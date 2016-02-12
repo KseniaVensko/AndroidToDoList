@@ -20,7 +20,8 @@
             android:layout_height="match_parent"
             android:text="(item)"
             android:id="@+id/textinlist"
-            android:textSize="40sp" />
+            android:textSize="40sp"
+            android:gravity="right" />
     </LinearLayout>
 
 </LinearLayout>
