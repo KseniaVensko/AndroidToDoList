@@ -39,6 +39,19 @@ public class CategoryChooserActivity extends AppCompatActivity
 		this.listView.setAdapter(ca);
 	}
 
+	//Reverse calculating, because i give up
+	protected long getCategoryTagFromName(String name)
+	{
+		for(Category c: Category.get())
+		{
+			if(c.getName().equals(name))
+			{
+				return c.getTag();
+			}
+		}
+		return 0;
+	}
+
 	public void categorySearchClick(View view)
 	{
 		//We will store matching categories (only their numbers - tags) in an ArrayList
@@ -53,25 +66,26 @@ public class CategoryChooserActivity extends AppCompatActivity
 			//I will assume, and hope, that he will be the first one there.
 			LinearLayout layout2 = (LinearLayout)layout.getChildAt(0);
 			CheckBox child = (CheckBox) layout2.getChildAt(0);
-			System.out.println(child.toString());
-			//Child has his category inside a "tag" (do not mistake this tag for a category's tag = ID number)
-			Category category = (Category) child.getTag();
 
-			if(category == null)
-			{
-				continue; //todo rework
-			}
 			if(child.isChecked())
 			{
-
-				System.out.println(category.getTag());
-				list.add(category.getTag());
+				long tag = getCategoryTagFromName(child.getText().toString());
+				if(tag>0)
+				{
+					list.add(tag);
+				}
 			}
+		}
+
+		long[] convertedlist = new long[list.size()];
+		for(int i = 0;i<list.size();i++)
+		{
+			convertedlist[i]=list.get(i);
 		}
 
 		//Array of category tags will be passed to the category activity class
 		Intent intent = new Intent(this, CategoryActivity.class);
-		intent.putExtra("categories",list.toArray());
+		intent.putExtra("categories", convertedlist);
 		startActivity(intent);
 	}
 }

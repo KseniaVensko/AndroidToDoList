@@ -49,6 +49,7 @@ public class CategoryActivity extends AppCompatActivity
 		}
 
 		this.categories = intent.getLongArrayExtra("categories");
+		System.out.println(categories.toString());
 	}
 
 	@Override
