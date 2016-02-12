@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import smart.tuke.sk.todolist.R;
 import smart.tuke.sk.todolist.Task;
@@ -28,7 +29,7 @@ public class CustomAdapter extends BaseAdapter
 
 	public CustomAdapter(Context tasklist, List<DatabaseObject> tasks)
 	{
-		//upraveny typ Context, tento adapter je volany aj z CategoryActivity
+		//changed type to Context, this adapter is called from CategoryActivity too
 		context = tasklist;
 		list = tasks;
 		inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -61,8 +62,14 @@ public class CustomAdapter extends BaseAdapter
 		Holder holder = new Holder();
 		View rowView;
 		rowView = inflater.inflate(R.layout.onerow, null);
+
+		//Filling the information inside each row
 		((TextView) rowView.findViewById(R.id.textinlist)).setText(list.get(position).name);
+		((CheckBox) rowView.findViewById(R.id.checkBoxFinished)).setChecked(true);//todo
+
 		holder.cb = (TextView) rowView.findViewById(R.id.textinlist);
+
+		//Information for a future Task activity
 		rowView.setOnClickListener(new View.OnClickListener()
 		{
 			@Override
