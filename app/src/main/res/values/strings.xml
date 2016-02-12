@@ -105,4 +105,5 @@
     <string name="delete">DELETE</string>
     <string name="search">Search</string>
     <string name="finished">Finished</string>
+    <string name="cancel">Cancel</string>
 </resources>
